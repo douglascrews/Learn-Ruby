@@ -1,3 +1,11 @@
+BEGIN {
+	puts "Static initializer starting."
+}
+
+END {
+	puts "This runs at the end of processing"
+}
+
 class Greeter
 	attr_accessor :names
 
@@ -26,10 +34,34 @@ class Greeter
 			puts "Eat shit, #{@names}. Get the fuck outta here!"
 		end
 	end
+
+	def print_multiline
+		print <<EOF
+		This prints a multiline
+		statement.
+EOF
+
+		print <<"EOF"; # exactly the same as above
+		This also prints a multiline
+		statement.
+EOF
+
+		print <<`EOC` # execute commands
+		echo "First echoed message."
+		echo "Second echoed message." # Why is this not printing?
+EOC
+
+		print <<"first", <<"second" # stacked
+		I said foo.
+first
+		I said bar.
+second
+	end
 end
 
 if __FILE__ == $0
 	g = Greeter.new
+=begin
 	g.hello
 	g.bye
 
@@ -44,4 +76,7 @@ if __FILE__ == $0
 	g.names = nil
 	g.hello
 	g.bye
+=end
+
+	g.print_multiline
 end
