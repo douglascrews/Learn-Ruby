@@ -1,0 +1,20 @@
+pipeline 
+{
+	agent any
+	stages
+	{
+		stage('Build')
+		{
+			steps
+			{
+				sh 'echo "Testing..."'
+				sh '''
+					echo "Testing...."
+					echo "1, 2, 3."
+					pwd
+					ls -la
+				'''
+			}
+		}
+	}
+}
