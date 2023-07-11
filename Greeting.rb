@@ -1,3 +1,5 @@
+#Gods damn it, Git sucks.
+
 BEGIN {
 	puts "Static initializer starting."
 }
